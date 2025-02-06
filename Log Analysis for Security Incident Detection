@@ -1,0 +1,37 @@
+Log Analysis for Security Incident Detection
+Objective
+This guide outlines the step-by-step process for analyzing security logs to detect and respond to potential security incidents.
+
+Step 1: Accessing Log Files
+Identify relevant log sources:
+
+Windows Event Logs (Event Viewer > Security Logs)
+Linux Logs (/var/log/syslog, /var/log/auth.log)
+Firewall and Network Logs (SIEM tools like Splunk, Graylog)
+Use command-line tools to view logs:
+
+Windows: wevtutil qe Security /c:10 /rd:true /f:text
+Linux: tail -f /var/log/auth.log
+Step 2: Identifying Suspicious Activity
+Look for unusual login attempts:
+
+Repeated failed logins (Event ID 4625 in Windows)
+Successful logins from unexpected locations
+SSH brute force attempts (Failed password for user in Linux logs)
+Detect privilege escalation:
+
+Windows: Event ID 4673 (Sensitive Privilege Use)
+Linux: sudo activity in /var/log/auth.log
+Check for malicious process execution:
+
+Windows: Event ID 4688 (New Process Creation)
+Linux: Unusual processes (ps aux | grep suspicious_process)
+Step 3: Investigating and Responding
+Correlate log entries across multiple sources.
+Isolate the affected system if suspicious activity is confirmed.
+Run forensic analysis using tools like Wireshark or Sysmon.
+Report findings and escalate as needed.
+Best Practices for Log Analysis
+✔ Enable centralized logging to streamline analysis.
+✔ Automate alerts for critical security events.
+✔ Regularly review logs to establish a baseline of normal activity.
