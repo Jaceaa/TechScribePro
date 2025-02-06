@@ -1,0 +1,98 @@
+# Troubleshooting Guide: Network Connectivity Issues
+
+## Overview  
+This guide provides step-by-step troubleshooting instructions for diagnosing and resolving network connectivity issues on company workstations.
+
+## Symptoms  
+- No internet access  
+- Slow or intermittent connection  
+- Cannot reach internal resources  
+- DNS resolution failures  
+
+## Prerequisites  
+- Verify the workstation is powered on and connected to the network  
+- Ensure no scheduled maintenance is affecting the network  
+
+## Step-by-Step Troubleshooting  
+
+### **Step 1: Check Physical Connections**  
+1. Ensure the Ethernet cable is securely plugged in (if applicable).  
+2. If using Wi-Fi, confirm the workstation is connected to the correct network.  
+3. Restart the router/switch if multiple devices are affected.  
+
+### **Step 2: Verify IP Configuration**  
+#### **Windows:**  
+Run the following command in Command Prompt:
+```sh
+ipconfig /all
+```
+- If no IP address is assigned, release and renew with:
+```sh
+ipconfig /release && ipconfig /renew
+```
+
+#### **Linux/macOS:**  
+Check the IP address:
+```sh
+ifconfig (or ip a)
+```
+Renew the IP address:
+```sh
+sudo dhclient -r && sudo dhclient
+```
+
+### **Step 3: Test Network Connectivity**  
+#### **Ping Gateway:**  
+```sh
+ping -c 4 <gateway_ip>
+```
+If no response, proceed to Step 4.  
+
+#### **Ping External Address (Google DNS - 8.8.8.8):**  
+```sh
+ping -c 4 8.8.8.8
+```
+If successful, but websites don't load, there may be a DNS issue. Move to Step 5.  
+
+### **Step 4: Restart Network Services**  
+#### **Windows:**  
+```sh
+netsh int ip reset
+netsh winsock reset
+ipconfig /flushdns
+```
+
+#### **Linux/macOS:**  
+```sh
+sudo systemctl restart NetworkManager
+```
+
+### **Step 5: Check DNS Resolution**  
+Test DNS with:
+```sh
+nslookup google.com
+```
+If it fails, change DNS settings to Google's public DNS:  
+- **Windows:** Update DNS in network adapter settings.  
+- **Linux/macOS:** Edit `/etc/resolv.conf` and add:
+```sh
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+
+### **Step 6: Check Firewall and Security Software**  
+1. Temporarily disable firewall/antivirus and test connectivity.  
+2. If disabling resolves the issue, update firewall rules to allow network traffic.  
+
+### **Step 7: Contact IT Support**  
+If the issue persists, collect the following information before escalating:
+- Output from `ipconfig /all` (Windows) or `ifconfig/ip a` (Linux/macOS)  
+- Ping results to gateway and external IPs  
+- Any recent changes to network configuration  
+
+## Conclusion  
+Following this guide will resolve most network connectivity issues. If further assistance is required, escalate the issue to IT support with the collected diagnostics.
+
+---
+**Author:** Jace Andersen  
+**Last Updated:** 2025-02-05
