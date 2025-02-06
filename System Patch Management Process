@@ -1,46 +1,58 @@
 # Standard Operating Procedure (SOP)
-System Patch Management Process
-1. Purpose
-This SOP outlines the process for identifying, testing, and deploying security patches on company systems to ensure compliance and minimize vulnerabilities.
-2. Scope
-This procedure applies to all IT-managed systems, including Windows, Linux, and network devices. It covers patch identification, testing, approval, deployment, and verification.
-3. Roles and Responsibilities
-Role	Responsibility
-System Administrator	Identifies and applies patches to assigned systems
-Security Analyst	Assesses patch risk and urgency
-IT Manager	Approves patches before deployment
-Help Desk Team	Assists users with post-patch issues
-4. Procedure
-Step 1: Patch Identification
-1.	Subscribe to vendor security bulletins (Microsoft, Linux distros, firewall vendors).
-2.	Use automated tools (e.g., WSUS, SCCM, or Nessus) to detect missing patches.
-3.	Document critical patches in the Patch Tracking Sheet.
-Step 2: Risk Assessment & Approval
-1.	Security Analyst reviews patches for potential conflicts or vulnerabilities.
-2.	Assign risk level:
-o	Critical – Immediate patch required
-o	High – Patch within 7 days
-o	Medium – Patch within 30 days
-o	Low – Patch during next scheduled maintenance
-3.	IT Manager reviews and approves patches for deployment.
-Step 3: Patch Testing
-1.	Apply patches to a test environment first.
-2.	Verify system stability, application compatibility, and network performance.
-3.	Document any issues or failures before full deployment.
-Step 4: Deployment
-1.	Schedule patch deployment during off-peak hours.
-2.	Use deployment tools (SCCM, Ansible, or manual update) based on the system type.
-3.	Notify users 24-48 hours in advance about any potential downtime.
-Step 5: Post-Deployment Verification
-1.	Confirm patch installation via:
-o	Windows: wmic qfe list or Get-HotFix (PowerShell)
-o	Linux: yum list updates --installed or dpkg -l | grep security
-2.	Monitor system logs for errors or unexpected behavior.
-3.	Help Desk team assists users with post-update issues.
-5. Compliance & Documentation
-•	Maintain records of all patches in the Patch Tracking Sheet.
-•	Conduct quarterly patch audits for compliance.
-6. Revision History
-Date	Change Description	Author
-2025-02-05	Initial SOP creation	Jace Andersen
+## System Patch Management Process
 
+### 1. Purpose  
+This SOP outlines the process for identifying, testing, and deploying security patches on company systems to ensure compliance and minimize vulnerabilities.  
+
+### 2. Scope  
+This procedure applies to all IT-managed systems, including **Windows, Linux, and network devices**. It covers **patch identification, testing, approval, deployment, and verification**.  
+
+### 3. Roles and Responsibilities  
+| Role | Responsibility |  
+|------|--------------|  
+| **System Administrator** | Identifies and applies patches to assigned systems |  
+| **Security Analyst** | Assesses patch risk and urgency |  
+| **IT Manager** | Approves patches before deployment |  
+| **Help Desk Team** | Assists users with post-patch issues |  
+
+### 4. Procedure  
+
+#### Step 1: Patch Identification  
+1. Subscribe to vendor security bulletins (Microsoft, Linux distros, firewall vendors).  
+2. Use automated tools (e.g., **WSUS, SCCM, or Nessus**) to detect missing patches.  
+3. Document critical patches in the **Patch Tracking Sheet**.  
+
+#### Step 2: Risk Assessment & Approval  
+1. Security Analyst reviews patches for potential conflicts or vulnerabilities.  
+2. Assign risk level:  
+   - **Critical** – Immediate patch required  
+   - **High** – Patch within 7 days  
+   - **Medium** – Patch within 30 days  
+   - **Low** – Patch during next scheduled maintenance  
+3. IT Manager reviews and approves patches for deployment.  
+
+#### Step 3: Patch Testing  
+1. Apply patches to a **test environment** first.  
+2. Verify system stability, application compatibility, and network performance.  
+3. Document any **issues or failures** before full deployment.  
+
+#### Step 4: Deployment  
+1. Schedule patch deployment during **off-peak hours**.  
+2. Use deployment tools (**SCCM, Ansible, or manual update**) based on the system type.  
+3. Notify users **24-48 hours in advance** about any potential downtime.  
+
+#### Step 5: Post-Deployment Verification  
+1. Confirm patch installation via:  
+   - **Windows:** `wmic qfe list` or `Get-HotFix` (PowerShell)  
+   - **Linux:** `yum list updates --installed` or `dpkg -l | grep security`  
+2. Monitor system logs for **errors or unexpected behavior**.  
+3. Help Desk team assists users with post-update issues.  
+
+### 5. Compliance & Documentation  
+- Maintain records of all patches in the **Patch Tracking Sheet**.  
+- Conduct quarterly patch audits for compliance.  
+
+### 6. Revision History  
+| Date | Change Description | Author |  
+|------|-------------------|--------|  
+| 2025-02-05 | Initial SOP creation | Jace Andersen |  
